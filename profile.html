@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil - Mood Tracker</title>
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body data-theme="light">
+    <!-- Background Animation -->
+    <div class="background-animation">
+        <div class="floating-particle"></div>
+        <div class="floating-particle"></div>
+        <div class="floating-particle"></div>
+        <div class="floating-particle"></div>
+        <div class="floating-particle"></div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="confirmation-modal" id="confirmationModal">
+        <div class="confirmation-content">
+            <h3 id="confirmationTitle">Əminsiniz?</h3>
+            <p id="confirmationMessage">Bu əməliyyatı təsdiqləyirsiniz?</p>
+            <div class="confirmation-buttons">
+                <button class="confirm-btn" id="confirmYes">Bəli</button>
+                <button class="confirm-btn cancel" id="confirmNo">Xeyr</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="profile-container">
+        <!-- Header -->
+        <header class="profile-header">
+            <a href="index.html" class="back-btn">← Geri</a>
+            <h1 id="headerTitle">Profilim</h1>
+            <button class="settings-btn" id="settingsBtn">⚙️</button>
+        </header>
+
+        <!-- Profile Info -->
+        <section class="user-info">
+            <div class="avatar-section">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profil" class="user-avatar" id="userAvatar">
+                <input type="file" id="avatarFileInput" class="avatar-file-input" accept="image/*">
+                <button class="edit-avatar-btn" id="editAvatarBtn">📁</button>
+            </div>
+            <div class="user-details">
+                <div class="user-name-container">
+                    <h2 class="user-name" id="userName">İstifadəçi Adı</h2>
+                    <button class="edit-name-btn" id="editNameBtn">✏️</button>
+                </div>
+                <div class="user-email-container">
+                    <p class="user-email" id="userEmail">istifadeci@example.com</p>
+                    <button class="edit-email-btn" id="editEmailBtn">✏️</button>
+                </div>
+                <div class="user-stats">
+                    <div class="stat">
+                        <span class="stat-number" id="totalEntries">0</span>
+                        <span class="stat-label" id="entriesLabel">Giriş</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="streakDays">0</span>
+                        <span class="stat-label" id="daysLabel">Gün</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="avgMood">0.0</span>
+                        <span class="stat-label" id="avgLabel">Ortalama</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Premium Section -->
+        <section class="premium-section">
+            <div class="premium-card" id="premiumCard">
+                <div class="premium-info">
+                    <h3 id="premiumTitle">⭐ Premium Üzvlük</h3>
+                    <p id="premiumDesc">Əlavə xüsusiyyətlərin kilidini açın</p>
+                </div>
+                <a href="premium.html" class="upgrade-btn" id="upgradeBtn">
+                    <span id="upgradeText">Yüksəlt</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="actions-section">
+            <h3 id="actionsTitle">Sürətli Əməliyyatlar</h3>
+            <div class="action-buttons">
+                <button class="action-btn" id="moodHistoryBtn">
+                    <span class="btn-icon">📈</span>
+                    <span class="btn-text" id="moodHistoryText">Köhnə Girişlər</span>
+                </button>
+                <button class="action-btn" id="exportBtn">
+                    <span class="btn-icon">📤</span>
+                    <span class="btn-text" id="exportText">Məlumatları İxrac Et</span>
+                </button>
+                <button class="action-btn" id="remindersBtn">
+                    <span class="btn-icon">⏰</span>
+                    <span class="btn-text" id="remindersText">Xatırlatmalar</span>
+                </button>
+                <button class="action-btn" id="goalsBtn">
+                    <span class="btn-icon">🎯</span>
+                    <span class="btn-text" id="goalsText">Hədəflər</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Account Management -->
+        <section class="account-section">
+            <h3 id="accountTitle">Hesab İdarəetməsi</h3>
+            <div class="account-buttons">
+                <a href="login.register.html" class="account-btn" id="switchAccountBtn">
+                    <span id="switchAccountText">Başqa hesabdan giriş et</span>
+                </a>
+                <button class="account-btn logout" id="deleteAccountBtn">
+                    <span id="deleteAccountText">Hesabı sil</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Settings Modal -->
+        <div class="settings-modal" id="settingsModal">
+            <div class="settings-content">
+                <div class="settings-header">
+                    <h2 id="settingsModalTitle">Tənzimləmələr</h2>
+                    <button class="close-settings" id="closeSettings">&times;</button>
+                </div>
+                <div class="settings-list">
+                    <div class="setting-item">
+                        <span class="setting-label" id="languageLabel">Dil</span>
+                        <select class="setting-select" id="languageSelect">
+                            <option value="az">Azərbaycanca</option>
+                            <option value="en">English</option>
+                            <option value="ru">Русский</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <span class="setting-label" id="themeLabel">Tema</span>
+                        <select class="setting-select" id="themeSelect">
+                            <option value="light" id="themeLight">Açıq</option>
+                            <option value="dark" id="themeDark">Qaranlıq</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <span class="setting-label" id="notificationsLabel">Bildirişlər</span>
+                        <label class="switch">
+                            <input type="checkbox" id="notificationsToggle">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Avatar Modal -->
+        <div class="avatar-modal" id="avatarModal">
+            <div class="avatar-modal-content">
+                <h3 id="avatarModalTitle">Profil Şəkli</h3>
+                <p id="avatarModalDesc">Şəkil əməliyyatını seçin</p>
+                <div class="avatar-modal-buttons">
+                    <button class="avatar-modal-btn" id="viewAvatarBtn">
+                        <span id="viewAvatarText">Şəklə Baxmaq</span>
+                    </button>
+                    <button class="avatar-modal-btn" id="changeAvatarBtn">
+                        <span id="changeAvatarText">Yeni Şəkil Əlavə Et</span>
+                    </button>
+                    <button class="avatar-modal-btn delete" id="deleteAvatarBtn">
+                        <span id="deleteAvatarText">Şəkli Silmək</span>
+                    </button>
+                    <button class="avatar-modal-btn" id="closeAvatarModalBtn">
+                        <span id="closeAvatarText">Bağla</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Name Modal -->
+        <div class="edit-modal" id="editNameModal">
+            <div class="edit-modal-content">
+                <h3>Adınızı dəyişin</h3>
+                <input type="text" id="nameInput" class="edit-input" placeholder="Yeni adınızı daxil edin">
+                <div class="edit-modal-buttons">
+                    <button class="edit-modal-btn confirm" id="saveNameBtn">Yadda saxla</button>
+                    <button class="edit-modal-btn cancel" id="cancelNameBtn">Ləğv et</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Email Modal -->
+        <div class="edit-modal" id="editEmailModal">
+            <div class="edit-modal-content">
+                <h3>E-poçtunuzu dəyişin</h3>
+                <input type="email" id="emailInput" class="edit-input" placeholder="Yeni e-poçtunuzu daxil edin">
+                <div class="edit-modal-buttons">
+                    <button class="edit-modal-btn confirm" id="saveEmailBtn">Yadda saxla</button>
+                    <button class="edit-modal-btn cancel" id="cancelEmailBtn">Ləğv et</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="profile.js"></script>
+</body>
+</html>
