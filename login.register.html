@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moodaker - Giriş / Qeydiyyat</title>
+    <link rel="stylesheet" href="login.register.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Tema dəyişdir butonu -->
+    <div class="theme-toggle">
+        <button id="theme-btn">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <!-- Əsas menyu butonu -->
+    <button class="home-btn" onclick="goToHome()">
+        <i class="fas fa-home"></i>
+        Əsas Səhifə
+    </button>
+
+    <div class="container">
+        <div class="welcome-section">
+            <div class="logo">
+                <h1>Moodaker</h1>
+                <p>Xoş gəlmisiniz! Musiqi dünyasına qoşulun.</p>
+            </div>
+            
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-music"></i>
+                    <span>Milyonlarla mahnı</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-headphones"></i>
+                    <span>Yüksək keyfiyyət</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Hər yerdə dinlə</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-section">
+            <div class="form-container">
+                <div class="form-toggle">
+                    <button class="toggle-btn active" data-form="login">Giriş</button>
+                    <button class="toggle-btn" data-form="register">Qeydiyyat</button>
+                </div>
+                
+                <form id="login-form" class="form active">
+                    <h2>Hesabınıza daxil olun</h2>
+                    
+                    <div class="social-login">
+                        <button type="button" class="social-btn google-btn">
+                            <i class="fab fa-google"></i>
+                            Google ilə daxil ol
+                        </button>
+                        <button type="button" class="social-btn facebook-btn">
+                            <i class="fab fa-facebook-f"></i>
+                            Facebook ilə daxil ol
+                        </button>
+                    </div>
+                    
+                    <div class="divider">
+                        <span>və ya</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="login-email">E-poçt</label>
+                        <input type="email" id="login-email" placeholder="E-poçtunuzu daxil edin" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="login-password">Şifrə</label>
+                        <input type="password" id="login-password" placeholder="Şifrənizi daxil edin" required>
+                    </div>
+                    <div class="options">
+                        <label class="checkbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Məni xatırla
+                        </label>
+                        <a href="#" class="forgot-password">Şifrəni unutmusunuz?</a>
+                    </div>
+                    <button type="submit" class="submit-btn">Daxil ol</button>
+                </form>
+                
+                <form id="register-form" class="form">
+                    <h2>Yeni hesab yaradın</h2>
+                    
+                    <div class="social-login">
+                        <button type="button" class="social-btn google-btn">
+                            <i class="fab fa-google"></i>
+                            Google ilə qeydiyyat
+                        </button>
+                        <button type="button" class="social-btn facebook-btn">
+                            <i class="fab fa-facebook-f"></i>
+                            Facebook ilə qeydiyyat
+                        </button>
+                    </div>
+                    
+                    <div class="divider">
+                        <span>və ya</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="register-name">Ad və Soyad</label>
+                        <input type="text" id="register-name" placeholder="Adınızı və soyadınızı daxil edin" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="register-email">E-poçt</label>
+                        <input type="email" id="register-email" placeholder="E-poçtunuzu daxil edin" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="register-password">Şifrə</label>
+                        <input type="password" id="register-password" placeholder="Şifrə yaradın" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="register-confirm">Şifrəni təsdiqlə</label>
+                        <input type="password" id="register-confirm" placeholder="Şifrənizi təkrar daxil edin" required>
+                    </div>
+                    <div class="options">
+                        <label class="checkbox">
+                            <input type="checkbox" required>
+                            <span class="checkmark"></span>
+                            <a href="#">İstifadəçi şərtləri</a> ilə razıyam
+                        </label>
+                    </div>
+                    <button type="submit" class="submit-btn">Qeydiyyatdan keç</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="login.register.js"></script>
+</body>
+</html>
