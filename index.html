@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mood Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body data-theme="light">
+  <!-- AI Chat Sidebar -->
+  <div class="chat-sidebar" id="chatSidebar">
+    <div class="chat-header">
+      <h3 id="chatTitle">💬 Mood AI</h3>
+      <button class="toggle-chat" id="toggleChat">−</button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="message ai-message">
+        <div class="message-content">
+          <strong id="aiWelcome">Mood AI:</strong> <span id="aiWelcomeText">Salam! Mən sizin mood köməkçisiniz. 🫂 Bugün özünüzü necə hiss edirsiniz?</span>
+        </div>
+        <div class="message-time">İndi</div>
+      </div>
+    </div>
+    <div class="quick-actions" id="quickActions">
+      <button class="quick-btn" data-action="motivation" id="quickMotivation">🚀 Motivasiya</button>
+      <button class="quick-btn" data-action="sad" id="quickSad">😔 Pis hiss</button>
+      <button class="quick-btn" data-action="stress" id="quickStress">😫 Stress</button>
+      <button class="quick-btn" data-action="talk" id="quickTalk">💭 Danışmaq</button>
+    </div>
+    <div class="chat-input-container">
+      <input type="text" id="chatInput" placeholder="Mənə yazın...">
+      <button id="sendMessage" class="send-btn">↵</button>
+    </div>
+  </div>
+
+  <!-- AI Chat Open Button (Bağlandıqdan sonra görünəcək) -->
+  <button class="chat-open-btn" id="chatOpenBtn">💬</button>
+
+  <!-- Main Content -->
+  <div class="main-content" id="mainContent">
+    <header class="site-header">
+      <div class="brand">Mood Tracker</div>
+      <div class="header-controls">
+        <a class="btn premium-btn" href="premium.html">
+          <span class="btn-icon">⭐</span>
+          <span class="btn-text">Premium</span>
+        </a>
+        <a class="btn login-btn" href="login.register.html">
+          <span class="btn-icon">🔐</span>
+          <span class="btn-text">Login</span>
+        </a>
+        
+        <!-- Profil Dropdown - YENİLƏNİB -->
+        <div class="profile-dropdown">
+          <button class="profile-btn" id="profileBtn">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profil" class="profile-icon" id="headerProfileImg">
+          </button>
+          <div class="dropdown-menu" id="dropdownMenu">
+            <div class="dropdown-user">
+              <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profil" class="dropdown-profile-img" id="dropdownProfileImg">
+              <div class="dropdown-user-info">
+                <div class="dropdown-user-name" id="dropdownUserName">İstifadəçi Adı</div>
+                <div class="dropdown-user-email" id="dropdownUserEmail">istifadeci@example.com</div>
+              </div>
+            </div>
+            <div class="dropdown-divider"></div>
+            
+            <!-- Dil Seçimi - YENİ -->
+            <div class="dropdown-section">
+              <div class="dropdown-section-title">Dil / Language</div>
+              <div class="language-buttons">
+                <button class="lang-btn active" data-lang="az">AZ</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="ru">RU</button>
+              </div>
+            </div>
+            
+            <!-- Tema Seçimi - YENİ -->
+            <div class="dropdown-section">
+              <div class="dropdown-section-title">Tema / Theme</div>
+              <div class="theme-buttons">
+                <button class="theme-btn active" data-theme="light">
+                  <span class="theme-icon">☀️</span>
+                  <span class="theme-text">Açıq</span>
+                </button>
+                <button class="theme-btn" data-theme="dark">
+                  <span class="theme-icon">🌙</span>
+                  <span class="theme-text">Qaranlıq</span>
+                </button>
+              </div>
+            </div>
+            
+            <div class="dropdown-divider"></div>
+            <a href="profile.html?tab=settings" class="dropdown-item">
+              <span class="dropdown-icon">⚙️</span>
+              <span class="dropdown-text">Tənzimləmələr</span>
+            </a>
+            <a href="profile.html" class="dropdown-item">
+              <span class="dropdown-icon">👤</span>
+              <span class="dropdown-text">Profilim</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="login.register.html" class="dropdown-item logout">
+              <span class="dropdown-icon">🚪</span>
+              <span class="dropdown-text">Çıxış</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="card entry-card">
+        <h2 id="entry-heading">Bugünkü əhval</h2>
+
+        <div class="mood-row" role="radiogroup" aria-label="Mood selection">
+          <button class="pill" data-value="5" title="Çox xoşbəxt">😀</button>
+          <button class="pill" data-value="4" title="Yaxşı">🙂</button>
+          <button class="pill" data-value="3" title="Neytral">😐</button>
+          <button class="pill" data-value="2" title="Kədərli">☹️</button>
+          <button class="pill" data-value="1" title="Çox pis">😢</button>
+        </div>
+
+        <label for="note" class="sr-only">Qeyd</label>
+        <textarea id="note" maxlength="800" placeholder="Qısa qeyd (təxminən 100 sözə qədər)"></textarea>
+
+        <div class="entry-actions">
+          <button id="saveEntry" class="btn primary">Yadda saxla</button>
+          <button id="stickerBtn" class="btn">Sticker əlavə et</button>
+          <div class="wordcount" id="wordCount">0 söz</div>
+        </div>
+      </section>
+
+      <section class="card stats-card">
+        <div class="stats-header">
+          <h3>Əhval Statistikası</h3>
+          <div class="stats-controls">
+            <input type="date" id="filterDate">
+            <button id="resetFilter" class="btn small">Sıfırla</button>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="moodChart"></canvas>
+        </div>
+        <div id="statsSummary" class="stats-summary"></div>
+      </section>
+
+      <aside class="card notes-card">
+        <div class="notes-header">
+          <h3>Əlavə Qeydlər</h3>
+          <div class="notes-controls">
+            <textarea id="noteInput" placeholder="Qeyd əlavə et..." rows="3"></textarea>
+            <div class="notes-actions">
+              <button id="addNote" class="btn">Qeyd əlavə et</button>
+              <button id="addSticker" class="btn">😊</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="notesList" class="notes-list" aria-live="polite"></div>
+      </aside>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div>© 2025 Mood Tracker</div>
+        <div id="footerQuote" class="footer-quote">"Kiçik addımlar böyük fərq yaradır."</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- 3-dot menu template (hidden, used by JS) -->
+  <template id="menuTemplate">
+    <div class="menu">
+      <button class="menu-edit">Redaktə et</button>
+      <button class="menu-delete">Sil</button>
+    </div>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
